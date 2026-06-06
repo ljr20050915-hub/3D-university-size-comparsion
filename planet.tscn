@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://c7d8ynjn3a5hu"]
+
+[ext_resource type="Script" uid="uid://byy064k7daeh7" path="res://planet.gd" id="1_1odxm"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jcv8b"]
+
+[sub_resource type="FontFile" id="FontFile_jcv8b"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[node name="Planet" type="Node3D" unique_id=474758443]
+script = ExtResource("1_1odxm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1026655331]
+mesh = SubResource("SphereMesh_jcv8b")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=748953661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+font = SubResource("FontFile_jcv8b")
