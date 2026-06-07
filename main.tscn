@@ -1,38 +1,44 @@
 [gd_scene format=3 uid="uid://b5h3dcjjjyfrk"]
 
 [ext_resource type="Script" uid="uid://cmqybqjfxv35" path="res://camera_3d.gd" id="1_1bvp3"]
-[ext_resource type="Script" uid="uid://w52hsq6vcmon" path="res://planet_manager.gd" id="2_h2yge"]
-[ext_resource type="PackedScene" uid="uid://c7d8ynjn3a5hu" path="res://planet.tscn" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://btbehfqepfnjn" path="res://下载.jpg" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://w52hsq6vcmon" path="res://object_manager.gd" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c7d8ynjn3a5hu" path="res://object.tscn" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://fo24yovj04to" path="res://universe.jpg" id="4_1bvp3"]
+[ext_resource type="AudioStream" uid="uid://dfj6hpmcfjl2" path="res://universe_music.mp3" id="5_lquwl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lquwl"]
+panorama = ExtResource("4_1bvp3")
 
-[sub_resource type="BoxMesh" id="BoxMesh_7mycd"]
+[sub_resource type="Sky" id="Sky_7mycd"]
+sky_material = SubResource("PanoramaSkyMaterial_lquwl")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
-albedo_texture = ExtResource("3_lquwl")
+[sub_resource type="Environment" id="Environment_272bh"]
+background_mode = 2
+sky = SubResource("Sky_7mycd")
+glow_enabled = true
+glow_intensity = 1.56
+glow_bloom = 0.27
 
-[node name="main" type="Node3D" unique_id=1757350822]
+[node name="Main" type="Node3D" unique_id=1757350822]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=956444968]
 transform = Transform3D(9.978015, 0.1860088, -0.6361005, 0, 9.598053, 2.806667, 0.66273904, -2.8004966, 9.576952, 0, 10, 10)
+near = 1.0
+far = 10000000.0
 script = ExtResource("1_1bvp3")
 
-[node name="Ground" type="StaticBody3D" parent="." unique_id=1961617720]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=294007785]
-transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, 0, 0)
-shape = SubResource("BoxShape3D_1bvp3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1266882724]
-transform = Transform3D(300, 0, 0, 0, 1, 0, 0, 0, 300, 0, -1, 1)
-mesh = SubResource("BoxMesh_7mycd")
-surface_material_override/0 = SubResource("StandardMaterial3D_7mycd")
-
-[node name="PlanetManager" type="Node" parent="." unique_id=1132060631]
+[node name="ObjectManager" type="Node" parent="." unique_id=1132060631]
 script = ExtResource("2_h2yge")
-planet_scene = ExtResource("3_h2yge")
+object_scene = ExtResource("3_h2yge")
 
-[node name="Planets" type="Node3D" parent="." unique_id=1560519923]
+[node name="Objects" type="Node3D" parent="." unique_id=1560519923]
+transform = Transform3D(0.99994636, 0.008803804, -0.005451152, -0.0087775225, 0.9999498, 0.004826416, 0.0054933717, -0.0047783065, 0.99997354, 0, 0, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1802198487]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1291600620]
+environment = SubResource("Environment_272bh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=486032903]
+stream = ExtResource("5_lquwl")
+autoplay = true

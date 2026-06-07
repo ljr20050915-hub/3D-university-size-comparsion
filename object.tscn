@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c7d8ynjn3a5hu"]
+
+[ext_resource type="Script" uid="uid://byy064k7daeh7" path="res://object.gd" id="1_l2ofb"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_jcv8b"]
+
+[sub_resource type="FontFile" id="FontFile_jcv8b"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l2ofb"]
+
+[node name="Object" type="Node3D" unique_id=474758443]
+script = ExtResource("1_l2ofb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1026655331]
+mesh = SubResource("SphereMesh_jcv8b")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=748953661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8376391, 0)
+font = SubResource("FontFile_jcv8b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1661751122]
+shape = SubResource("SphereShape3D_l2ofb")
