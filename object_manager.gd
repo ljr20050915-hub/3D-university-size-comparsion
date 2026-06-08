@@ -14,22 +14,24 @@ var object_data={
 	"Uranus":{"type":"planet","roughness":0.55,"specular":0.40,"diameter":50724,"texture":"res://uranus.jpg","rotation_speed":0.6},
 	"Saturn":{"type":"planet","roughness":0.80,"specular":0.20,"diameter":116464,"texture":"res://saturn.jpg","rotation_speed":0.7},
 	"Jupiter":{"type":"planet","roughness":0.75,"specular":0.25,"diameter":139822,"texture":"res://jupiter.jpg","rotation_speed":0.8},
-	"Sun":{"type":"star","brightness":7.0,"color":Color(1.0, 0.902, 0.588, 1.0),"diameter":1392700},
-	"Sirius A":{"type":"star","brightness":10.0,"color":Color(0.627, 0.914, 0.91),"diameter":2560000},
-	"Pollux":{"type":"star","brightness":5.0,"color":Color(1.0, 0.459, 0.243),"diameter":12500000},
-	"Sagittarius A*":{"type":"black_hole","brightness":7.0,"disk_color":Color(0.133, 0.714, 0.914, 1.0),"diameter":25000000,"mass":4000000},
-	"Arcturus":{"type":"star","brightness":5.0,"color":Color(1.0, 0.208, 0.004),"diameter":35300000},
-	"Polaris":{"type":"star","brightness":5.0,"color":Color(1.0, 0.667, 0.004, 1.0),"diameter":52163100},
-	"Aldebaran":{"type":"star","brightness":5.0,"color":Color(0.871, 0.286, 0.188),"diameter":61277920},
-	"Rigel":{"type":"star","brightness":15.0,"color":Color(0.275, 0.733, 0.902),"diameter":109000000},
-	"Pistol Star":{"type":"star","brightness":30.0,"color":Color(0.275, 0.533, 0.902, 1.0),"diameter":425000000},
-	"Antares":{"type":"star","brightness":5.0,"color":Color(0.8, 0.212, 0.184, 1.0),"diameter":965000000},
-	"VY-Canis-Majoris":{"type":"star","brightness":5.0,"color":Color(0.788, 0.231, 0.22, 1.0),"diameter":1975000000},
-	"Stephenson 2-18":{"type":"star","brightness":6.0,"color":Color(0.847, 0.125, 0.004, 1.0),"diameter":2992800000},
-	"Sun(Refer to...)":{"type":"star","brightness":7.0,"color":Color(1.0, 0.902, 0.588, 1.0),"diameter":1392700},
-	"NGC 1277":{"type":"black_hole","brightness":7.0,"disk_color":Color(0.133, 0.714, 0.361, 1.0),"diameter":59200000000,"mass":10000000000},
-	"S5 0014+81":{"type":"black_hole","brightness":6.0,"disk_color":Color(0.933, 0.714, 0.361, 1.0),"diameter":220000000000,"mass":40000000000},
-	"TON 618":{"type":"black_hole","brightness":8.0,"disk_color":Color(0.251, 0.628, 0.918, 1.0),"diameter":384000000000,"mass":66000000000},
+	"Earth(Refer to...)":{"type":"planet","roughness":0.55,"specular":0.60,"diameter":12742,"texture":"res://earth.jpg","rotation_speed":0.5},
+	"Sun":{"type":"star","brightness":50.0,"color":Color(1.0, 0.902, 0.494, 1.0),"diameter":1392700},
+	"Sirius A":{"type":"star","brightness":50.0,"color":Color(0.278, 0.742, 0.866, 1.0),"diameter":2560000},
+	"Pollux":{"type":"star","brightness":15.0,"color":Color(1.0, 0.459, 0.243),"diameter":12500000},
+	"Sagittarius A*":{"type":"black_hole","brightness":10.0,"disk_color":Color(0.133, 0.714, 0.914, 1.0),"diameter":25000000,"mass":4000000},
+	"Arcturus":{"type":"star","brightness":10.0,"color":Color(1.0, 0.208, 0.004),"diameter":35300000},
+	"Polaris":{"type":"star","brightness":15.0,"color":Color(1.0, 0.667, 0.004, 1.0),"diameter":52163100},
+	"Aldebaran":{"type":"star","brightness":10.0,"color":Color(0.871, 0.286, 0.188),"diameter":61277920},
+	"Rigel":{"type":"star","brightness":50.0,"color":Color(0.275, 0.733, 0.902),"diameter":109000000},
+	"Pistol Star":{"type":"star","brightness":100.0,"color":Color(0.275, 0.533, 0.902, 1.0),"diameter":425000000},
+	"Antares":{"type":"star","brightness":10.0,"color":Color(0.8, 0.212, 0.184, 1.0),"diameter":965000000},
+	"VY-Canis-Majoris":{"type":"star","brightness":10.0,"color":Color(0.788, 0.231, 0.22, 1.0),"diameter":1975000000},
+	"Stephenson 2-18":{"type":"star","brightness":10.0,"color":Color(0.847, 0.125, 0.004, 1.0),"diameter":2992800000},
+	"Sun(Refer to...)":{"type":"star","brightness":10.0,"color":Color(1.0, 0.902, 0.588, 1.0),"diameter":1392700},
+	"NGC 1277":{"type":"black_hole","brightness":10.0,"disk_color":Color(0.133, 0.714, 0.361, 1.0),"diameter":59200000000,"mass":10000000000},
+	"S5 0014+81":{"type":"black_hole","brightness":10.0,"disk_color":Color(0.933, 0.714, 0.361, 1.0),"diameter":220000000000,"mass":40000000000},
+	"TON 618":{"type":"black_hole","brightness":10.0,"disk_color":Color(0.251, 0.628, 0.918, 1.0),"diameter":384000000000,"mass":66000000000},
+	"Stephenson 2-18(Refer to...)":{"type":"star","brightness":10.0,"color":Color(0.847, 0.125, 0.004, 1.0),"diameter":2992800000},
 }
 
 const normal_dis = 1.1
@@ -53,12 +55,20 @@ func _ready():
 		object.position=Vector3(distance,0,0)
 		var label=object.get_node("Label3D")
 		label.text=object_name
-		if object_name != "Sun(Refer to...)":
+		if object_name not in ["Sun(Refer to...)","Stephenson 2-18(Refer to...)","Earth(Refer to...)"]:
 			label.text+="\nD="+str(diameter)+" km"
 		if object_name == "Sun(Refer to...)":
 			label.text+='\n|\n|\n|\n|\n↓'
 			label.scale*=1000
 			label.position+=Vector3(0,size*4.6,0)
+		if object_name == "Stephenson 2-18(Refer to...)":
+			label.text+='\n|\n|\n↓'
+			label.scale*=7
+			label.position+=Vector3(0,3,0)
+		if object_name == "Earth(Refer to...)":
+			label.text+='\n|\n|\n↓'
+			label.scale*=7
+			label.position+=Vector3(0,3,0)
 		var mesh=object.get_node("MeshInstance3D")
 		if data["type"] in ["moon","planet"]:
 			var texture=data["texture"]
@@ -95,8 +105,11 @@ func _ready():
 			object.add_child(ring)
 		mesh.material_override=mat
 		objects_node.add_child(object)
-		if data["type"] in ["moon","planet","sun"]:
-			distance+=normal_dis*size/2.0
+		if data["type"] in ["moon","planet","star"]:
+			if object_name == "Jupiter":
+				distance+=1.25*normal_dis*size/2.0
+			else:
+				distance+=normal_dis*size/2.0
 		else:
 			distance+=huge_dis*size/2.0
 		

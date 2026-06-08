@@ -26,8 +26,6 @@ transform = Transform3D(9.978015, 0.1860088, -0.6361005, 0, 9.598053, 2.806667, 
 near = 1.0
 far = 10000000.0
 script = ExtResource("1_1bvp3")
-min_distance = 1.0
-max_distance = 100000000.0
 
 [node name="ObjectManager" type="Node" parent="." unique_id=1132060631]
 script = ExtResource("2_h2yge")
