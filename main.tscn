@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://cmqybqjfxv35" path="res://camera_3d.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://w52hsq6vcmon" path="res://object_manager.gd" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c7d8ynjn3a5hu" path="res://object.tscn" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://fo24yovj04to" path="res://universe.jpg" id="4_1bvp3"]
-[ext_resource type="AudioStream" uid="uid://dfj6hpmcfjl2" path="res://universe_music.mp3" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://b231a2ywsrjag" path="res://8k_stars_milky_way.jpg" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://c6gvxmb15v1eq" path="res://music_unlimited-deep-space-relaxing-meditation-background-music-149049.mp3" id="5_lquwl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lquwl"]
-panorama = ExtResource("4_1bvp3")
+panorama = ExtResource("4_lquwl")
 
 [sub_resource type="Sky" id="Sky_7mycd"]
 sky_material = SubResource("PanoramaSkyMaterial_lquwl")
@@ -17,7 +17,7 @@ background_mode = 2
 sky = SubResource("Sky_7mycd")
 glow_enabled = true
 glow_intensity = 1.56
-glow_bloom = 0.27
+glow_bloom = 0.32
 
 [node name="Main" type="Node3D" unique_id=1757350822]
 
@@ -26,6 +26,8 @@ transform = Transform3D(9.978015, 0.1860088, -0.6361005, 0, 9.598053, 2.806667, 
 near = 1.0
 far = 10000000.0
 script = ExtResource("1_1bvp3")
+min_distance = 1.0
+max_distance = 100000000.0
 
 [node name="ObjectManager" type="Node" parent="." unique_id=1132060631]
 script = ExtResource("2_h2yge")

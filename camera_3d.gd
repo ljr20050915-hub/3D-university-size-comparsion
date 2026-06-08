@@ -1,7 +1,7 @@
 extends Camera3D
 
 @export var mouse_sensitivity := 0.005
-@export var zoom_ratio := 0.95
+@export var zoom_ratio := 0.975
 @export var move_ratio := 0.5
 
 @export var min_distance := 0.1

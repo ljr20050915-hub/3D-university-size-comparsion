@@ -17,7 +17,9 @@ var object_data={
 	"Sun":{"type":"star","brightness":7.0,"color":Color(1.0, 0.902, 0.588, 1.0),"diameter":1392700},
 	"Sirius A":{"type":"star","brightness":10.0,"color":Color(0.627, 0.914, 0.91),"diameter":2560000},
 	"Pollux":{"type":"star","brightness":5.0,"color":Color(1.0, 0.459, 0.243),"diameter":12500000},
+	"Sagittarius A*":{"type":"black_hole","brightness":7.0,"disk_color":Color(0.133, 0.714, 0.914, 1.0),"diameter":25000000,"mass":4000000},
 	"Arcturus":{"type":"star","brightness":5.0,"color":Color(1.0, 0.208, 0.004),"diameter":35300000},
+	"Polaris":{"type":"star","brightness":5.0,"color":Color(1.0, 0.667, 0.004, 1.0),"diameter":52163100},
 	"Aldebaran":{"type":"star","brightness":5.0,"color":Color(0.871, 0.286, 0.188),"diameter":61277920},
 	"Rigel":{"type":"star","brightness":15.0,"color":Color(0.275, 0.733, 0.902),"diameter":109000000},
 	"Pistol Star":{"type":"star","brightness":30.0,"color":Color(0.275, 0.533, 0.902, 1.0),"diameter":425000000},
@@ -25,7 +27,13 @@ var object_data={
 	"VY-Canis-Majoris":{"type":"star","brightness":5.0,"color":Color(0.788, 0.231, 0.22, 1.0),"diameter":1975000000},
 	"Stephenson 2-18":{"type":"star","brightness":6.0,"color":Color(0.847, 0.125, 0.004, 1.0),"diameter":2992800000},
 	"Sun(Refer to...)":{"type":"star","brightness":7.0,"color":Color(1.0, 0.902, 0.588, 1.0),"diameter":1392700},
+	"NGC 1277":{"type":"black_hole","brightness":7.0,"disk_color":Color(0.133, 0.714, 0.361, 1.0),"diameter":59200000000,"mass":10000000000},
+	"S5 0014+81":{"type":"black_hole","brightness":6.0,"disk_color":Color(0.933, 0.714, 0.361, 1.0),"diameter":220000000000,"mass":40000000000},
+	"TON 618":{"type":"black_hole","brightness":8.0,"disk_color":Color(0.251, 0.628, 0.918, 1.0),"diameter":384000000000,"mass":66000000000},
 }
+
+const normal_dis = 1.1
+const huge_dis = 1.5
 
 func _ready():
 	var objects_node=get_node("../Objects")
@@ -36,7 +44,10 @@ func _ready():
 		var size=diameter/KM_PER_UNIT
 		var mat=StandardMaterial3D.new()
 		var object=object_scene.instantiate()
-		distance+=1.1*size/2
+		if data["type"] in ["moon","planet","star"]:
+			distance+=normal_dis*size/2.0
+		else:
+			distance+=huge_dis*size/2.0
 		object.name=object_name
 		object.scale=Vector3.ONE*size
 		object.position=Vector3(distance,0,0)
@@ -68,7 +79,24 @@ func _ready():
 			light.light_color = data["color"]
 			light.omni_range = size*100
 			object.add_child(light)
+		elif data["type"] == "black_hole":
+			mat.albedo_color = Color.BLACK
+			var ring = MeshInstance3D.new()
+			ring.mesh = TorusMesh.new()
+			var ring_mat = StandardMaterial3D.new()
+			ring_mat.emission_enabled = true
+			ring_mat.emission = data["disk_color"]
+			ring_mat.emission_energy_multiplier = data["brightness"]
+			ring.material_override = ring_mat
+			ring.scale = Vector3.ONE*0.7
+			ring.rotation_degrees.x = 100
+			label.position.y+=0.4
+			label.text+="\nM="+str(data["mass"])+" SM"
+			object.add_child(ring)
 		mesh.material_override=mat
 		objects_node.add_child(object)
-		distance+=1.1*size/2
+		if data["type"] in ["moon","planet","sun"]:
+			distance+=normal_dis*size/2.0
+		else:
+			distance+=huge_dis*size/2.0
 		
