@@ -41,4 +41,5 @@ environment = SubResource("Environment_272bh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=486032903]
 stream = ExtResource("5_lquwl")
+volume_db = -10.0
 autoplay = true
